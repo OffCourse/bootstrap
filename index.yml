@@ -1,0 +1,118 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  OAuth:
+    Description: OAuth Token for Github Access
+    Default: "****"
+    Type: String
+    NoEcho: true
+
+Resources:
+  DevOpsTopic:
+    Type: "AWS::SNS::Topic"
+    Properties: 
+      TopicName: "offcourse-infrastructure"
+      Subscription:
+        - Endpoint: "yeehaa@offcourse.io"
+          Protocol: email
+
+  CFRole:
+    Type: "AWS::IAM::Role"
+    Properties: 
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Action: sts:AssumeRole
+          Principal:
+            Service: cloudformation.amazonaws.com
+          Effect: Allow
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+      Policies:
+        - PolicyName: "CloudFormation"
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - Effect: "Allow"
+                Action: 
+                  - dynamodb:CreateTable
+                  - dynamodb:DescribeTable
+                  - dynamodb:DeleteTable
+                  - dynamodb:UpdateTable
+                Resource: "*"
+  Pipeline:
+    Type: "AWS::CodePipeline::Pipeline"
+    DependsOn: CFRole
+    Properties:
+      RoleArn: arn:aws:iam::774182433398:role/AWS-CodePipeline-Service
+      Stages:
+      - Name: Source
+        Actions:
+        - Name: Source
+          ActionTypeId:
+            Category: Source
+            Owner: ThirdParty
+            Version: '1'
+            Provider: GitHub
+          OutputArtifacts:
+          - Name: Offcourse
+          Configuration:
+            Owner: OffCourse
+            Repo: infrastructure
+            Branch: master
+            OAuthToken: !Ref OAuth
+          RunOrder: 1
+      - Name: Dev
+        Actions:
+        - InputArtifacts:
+          - Name: Offcourse
+          Name: offcourse-infrastructure-dev
+          ActionTypeId:
+            Category: Deploy
+            Owner: AWS
+            Version: '1'
+            Provider: CloudFormation
+          OutputArtifacts: []
+          Configuration:
+            StackName: offcourse-infrastructure-dev
+            ActionMode: CREATE_UPDATE
+            Capabilities: CAPABILITY_IAM
+            RoleArn: !GetAtt CFRole.Arn
+            TemplateConfiguration: Offcourse::dev-config.json
+            TemplatePath: Offcourse::index.yml
+          RunOrder: 1
+      - Name: Edge
+        Actions:
+        - InputArtifacts: []
+          Name: QA
+          ActionTypeId:
+            Category: Approval
+            Owner: AWS
+            Version: '1'
+            Provider: Manual
+          OutputArtifacts: []
+          Configuration:
+            NotificationArn: !Ref DevOpsTopic
+            CustomData: "Approval or Reject this change after running Exploratory Tests"
+          RunOrder: 1
+        - InputArtifacts:
+          - Name: Offcourse
+          Name: offcourse-infrastructure-edge
+          ActionTypeId:
+            Category: Deploy
+            Owner: AWS
+            Version: '1'
+            Provider: CloudFormation
+          OutputArtifacts: []
+          Configuration:
+            StackName: offcourse-infrastructure-edge
+            ActionMode: CREATE_UPDATE
+            Capabilities: CAPABILITY_IAM
+            RoleArn: !GetAtt CFRole.Arn
+            TemplateConfiguration: Offcourse::edge-config.json
+            TemplatePath: Offcourse::index.yml
+          RunOrder: 2
+      ArtifactStore:
+        Type: S3
+        Location: codepipeline-us-east-1-814057763522
+      Name: offcourse-infrastructure
