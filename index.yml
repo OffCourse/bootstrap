@@ -15,36 +15,10 @@ Resources:
       Subscription:
         - Endpoint: "yeehaa@offcourse.io"
           Protocol: email
-
-  CFRole:
-    Type: "AWS::IAM::Role"
-    Properties: 
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-        - Action: sts:AssumeRole
-          Principal:
-            Service: cloudformation.amazonaws.com
-          Effect: Allow
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
-      Policies:
-        - PolicyName: "CloudFormation"
-          PolicyDocument: 
-            Version: "2012-10-17"
-            Statement: 
-              - Effect: "Allow"
-                Action: 
-                  - dynamodb:CreateTable
-                  - dynamodb:DescribeTable
-                  - dynamodb:DeleteTable
-                  - dynamodb:UpdateTable
-                Resource: "*"
   Pipeline:
     Type: "AWS::CodePipeline::Pipeline"
-    DependsOn: CFRole
     Properties:
-      RoleArn: arn:aws:iam::774182433398:role/AWS-CodePipeline-Service
+      RoleArn: !ImportValue CodePipelineRoleArn
       Stages:
       - Name: Source
         Actions:
@@ -77,7 +51,7 @@ Resources:
             StackName: offcourse-infrastructure-dev
             ActionMode: CREATE_UPDATE
             Capabilities: CAPABILITY_IAM
-            RoleArn: !GetAtt CFRole.Arn
+            RoleArn: !ImportValue CloudFormationRoleArn
             TemplateConfiguration: Offcourse::dev-config.json
             TemplatePath: Offcourse::index.yml
           RunOrder: 1
@@ -108,7 +82,7 @@ Resources:
             StackName: offcourse-infrastructure-edge
             ActionMode: CREATE_UPDATE
             Capabilities: CAPABILITY_IAM
-            RoleArn: !GetAtt CFRole.Arn
+            RoleArn: !ImportValue CloudFormationRoleArn
             TemplateConfiguration: Offcourse::edge-config.json
             TemplatePath: Offcourse::index.yml
           RunOrder: 2
