@@ -18,6 +18,7 @@ Resources:
   Pipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
+      Name: offcourse-infrastructure
       RoleArn: !ImportValue CodePipelineRoleArn
       Stages:
       - Name: Source
@@ -89,4 +90,10 @@ Resources:
       ArtifactStore:
         Type: S3
         Location: codepipeline-us-east-1-814057763522
-      Name: offcourse-infrastructure
+
+Outputs:
+  DevOpsTopicArn:
+    Description: Arn of the devops sns topic
+    Value: !Ref DevOpsTopic
+    Export:    
+      Name: DevOpsTopicArn

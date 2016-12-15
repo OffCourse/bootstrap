@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  WebsiteBucket:
+    Type: "AWS::S3::Bucket"
+    Properties: 
+      WebsiteConfiguration:
+        ErrorDocument: "index.html"
+        IndexDocument: "index.html"
+  TestFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.debug
+      Runtime: nodejs4.3
+      Environment:
+        Variables: 
+          S3_BUCKET: !Ref WebsiteBucket

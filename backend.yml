@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  OAuth:
+    Description: OAuth Token for Github Access
+    Default: "****"
+    Type: String
+    NoEcho: true
+
+Resources:
+  BackendBuild:
+    Type: "AWS::CodeBuild::Project"
+    Properties: 
+      Name: offcourse-backend
+      Artifacts:
+        Type: CODEPIPELINE
+      TimeoutInMinutes: 60
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: 774182433398.dkr.ecr.us-east-1.amazonaws.com/offcourse-build:latest
+        Type: LINUX_CONTAINER
+        EnvironmentVariables: []
+      ServiceRole: arn:aws:iam::774182433398:role/service-role/codebuild-offcourse-backend-service-role
+      Source:
+        Type: CODEPIPELINE
+  Pipeline:
+    Type: "AWS::CodePipeline::Pipeline"
+    Properties:
+      Name: offcourse-backend
+      RoleArn: !ImportValue CodePipelineRoleArn
+      Stages:
+      - Name: Source
+        Actions:
+        - Name: Source
+          ActionTypeId:
+            Category: Source
+            Owner: ThirdParty
+            Version: '1'
+            Provider: GitHub
+          OutputArtifacts:
+          - Name: raw
+          Configuration:
+            Owner: OffCourse
+            Repo: offcourse-backend
+            Branch: production
+            OAuthToken: !Ref OAuth
+          RunOrder: 1
+      - Name: Dev
+        Actions:
+        - InputArtifacts:
+          - Name: raw
+          Name: offcourse-backend-dev
+          ActionTypeId:
+            Category: Build
+            Owner: AWS
+            Version: '1'
+            Provider: CodeBuild
+          Configuration: 
+            ProjectName: !Ref BackendBuild
+          OutputArtifacts:
+            - Name: build
+          RunOrder: 1
+      ArtifactStore:
+        Type: S3
+        Location: codepipeline-us-east-1-814057763522
