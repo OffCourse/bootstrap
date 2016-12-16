@@ -11,7 +11,7 @@ Resources:
   TestFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.debug
+      Handler: index.handler
       Runtime: nodejs4.3
       Environment:
         Variables: 

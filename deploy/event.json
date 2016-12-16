@@ -1,0 +1,32 @@
+{
+    "CodePipeline.job": {
+        "id": "31aca2b2-4ebe-4902-a0a2-d925a1ffad38",
+        "accountId": "774182433398",
+        "data": {
+            "actionConfiguration": {
+                "configuration": {
+                    "FunctionName": "cp-test-TestFunction-11TYNZ92KRE4K"
+                }
+            },
+            "inputArtifacts": [
+                {
+                    "location": {
+                        "s3Location": {
+                            "bucketName": "codepipeline-us-east-1-814057763522",
+                            "objectKey": "test-lambda/MyApp/bkOvovw.zip"
+                        },
+                        "type": "S3"
+                    },
+                    "revision": "f60a39d7da954e8e602f33275c0c7c9c9f842f60",
+                    "name": "MyApp"
+                }
+            ],
+            "outputArtifacts": [],
+            "artifactCredentials": {
+                "secretAccessKey": "abFrFthUkYTohiZ9sz7lfr2FOWnqrtTdHaI2XMwn",
+                "sessionToken": "AgoGb3JpZ2luELr//////////wEaCXVzLWVhc3QtMSKAAmD47vDYsQPeHt5qqfAZUH6uyZuFUx2k9eX61r9+SIAIYSk4n3yxQY3xpiRQ7ulxkizay8cZdpKxzhnULfJ0bQjDwMHgqc3scbo8I9eCrv2R07YDoiLe8H5B3Id1WJhiNlOXLKyE25ZhUkUl5AxSnDrD80gcsf0sdaQuUIvPzAdEokZULe7JKemLQbe0QUSv7zuga9DclHJGNxKrhflatS+jTxRyl/J0KHphLTB57ACE8rfVgpvdC7VhpIXMbKMlTiHmyzYU4AQyT6TfxIpEOxG/tVRt8Js/0B1rD/VUOrsaHnhsDE8W9MBWvBGjxDWfVhDpnf/50iR70Ne8R/M2CgEq6AQI4P//////////ARAAGgw3NzQxODI0MzMzOTgiDAf9mB9F5xihCAuDHiq8BOv667dpXAaCUDb6tdlBCf6bIVjDUiCj2zoVO+qJYGMppoE4v0pSMtYyjcYUezm3B35h5btREFhMHsmYNADhqjSTkk7MS54E8+bHNQjhPqRyZcBiqJp4TJzm1gXhZF451zyd9XtQmzYoI0iF/GtzTE1gFAOcq3QQL/nUpbkrjh8fYmxLSBPqDsA5RsMBReKpFVy1xsd2c5p4R9yC6GgZV8RlzWvhNMrff3zyc/3ks0PEkwy3Jkx5es/idCOurVIfaJ83bWmz72lGjM7jNKOsPqyh1AGj73OKy0ruc2A0/A11VhiWGFP0rc2fA2MW7MXk3Zz2+ovOafcZ3TNOrdBjoUYNaIXKqX1HagfB92XMbhtpBhPEUeuz5ATD9GobQbkcAzsBKyiSk6ELGWVtG/KC7HeNAdeoA5gIP/1GBCmUm7enyv5qe6HjjVAbiWOKN2njAolKTfHyVSupLF5mWxw/sq9EAs16mTObF3FVK516iKvW7zXHXSVihZYUEXUlXcXw2FGL5udSCnq9IiFbw6/5/BBFhQyJNVtQ1wFRG7xgJ4f+Ci4jvsnSNA3nF4qjGjFEMnOYcyp085/xW5gowfp4FkcFczBp+pRy5lo7rZV3ZsKL0qIvXRRYOhfmWWepfoiziu6wJOYg1LaDvNMwUalYq16SHzZ9hPHYJkTXdle0KuOEdQPx/hvH0uyWACQNWILxd2AdI1VHVcBVHjKEqVmkdiwVAhAO/DMZgPhZJjc3en3Y0iWwg75Av8ujvaNSMKG1zMIF",
+                "accessKeyId": "ASIAJTL2BSBVRQDBHEQQ"
+            }
+        }
+    }
+}

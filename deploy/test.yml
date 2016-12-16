@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  TestFunction:
+    Properties:
+      CodeUri: s3://offcourse-bootstrap/011b96cc92dd8700ffa171885e5f1542
+      Environment:
+        Variables:
+          S3_BUCKET:
+            Ref: WebsiteBucket
+      Handler: index.handler
+      Runtime: nodejs4.3
+    Type: AWS::Serverless::Function
+  WebsiteBucket:
+    Properties:
+      WebsiteConfiguration:
+        ErrorDocument: index.html
+        IndexDocument: index.html
+    Type: AWS::S3::Bucket
+Transform: AWS::Serverless-2016-10-31
