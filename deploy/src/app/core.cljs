@@ -11,10 +11,10 @@
 
 (defn ^:export handler [& args]
   (go
-    (let [{:keys [event code-pipeline] :as service} (apply service/create adapters args)
-          payload (cv/to-payload event)
-          query   (cv/to-query event)
-          encoded-artifacts (async/<! (qa/fetch service query))
+    (let [{:keys [event] :as service} (apply service/create adapters args)
+          payload                     (cv/to-payload event)
+          query                       (cv/to-query event)
+          encoded-artifacts           (async/<! (qa/fetch service query))
           artifacts {} #_(ac/perform service [:decode encoded-artifacts])
           res1      {} #_(ac/perform service [:put artifacts])
           res2      {} #_(async/<! (ac/perform service [:put payload]))]

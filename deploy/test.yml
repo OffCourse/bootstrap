@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Resources:
   TestFunction:
     Properties:
-      CodeUri: s3://offcourse-bootstrap/011b96cc92dd8700ffa171885e5f1542
+      CodeUri: s3://offcourse-bootstrap/f45e5267b472f00fd5a41ee8c984f504
       Environment:
         Variables:
           S3_BUCKET:
