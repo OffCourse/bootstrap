@@ -3,5 +3,7 @@
 /out
 /.serverless
 **/node_modules
+**/extracted
+*.zip
 .env
 envvars.yml
