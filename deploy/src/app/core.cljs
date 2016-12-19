@@ -19,7 +19,7 @@
           artifacts                   (when found (async/<! (ac/perform service [:decode found])))
           res1      {} #_(ac/perform service [:put artifacts])
           res2      {} #_(async/<! (ac/perform service [:put payload]))]
-      (when-not found (log/log "RESTART PIPELINE"))
+      (log/log "RESTART PIPELINE")
       (service/done service artifacts))))
 
 (defn -main [] identity)

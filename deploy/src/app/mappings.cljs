@@ -4,11 +4,12 @@
             [cljs.core.async :as async]
             [shared.protocols.queryable :as qa]
             [cljs.nodejs :as node]
-            [shared.protocols.loggable :as log])
+            [shared.protocols.loggable :as log]
+            [shared.protocols.convertible :as cv])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (def Unzip (node/require "jszip"))
-(def toArray (node/require "stream-to-array"))
+(def fs (node/require "fs"))
 
 (defmethod fetch :artifacts [{:keys [bucket]} {:keys [input-queries credentials] :as query}]
   (go
@@ -22,7 +23,8 @@
 (defmethod perform [:decode :errors] [{:keys [code-pipeline]} [_ payload]]
   {:error payload})
 
-(defmethod perform [:decode :zipfile] [{:keys [code-pipeline]} [_ payload]]
+(defmethod perform [:decode :zipfile] [{:keys [code-pipeline]} [_ payload :as action]]
   (let [c (async/chan)]
-    (log/log "x" (clj->js (keys (:files (first payload)))))
+    (let [data (.readFileSync fs (:filename (first payload)))]
+      (.then (.loadAsync Unzip data) #(async/put! c (keys (first (vals (:files (cv/to-clj %1))))))))
     c))
