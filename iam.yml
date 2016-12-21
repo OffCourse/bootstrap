@@ -23,8 +23,8 @@ Resources:
                 - s3:GetBucketVersioning
               Resource: "*"
               Effect: Allow
-           - Action:
-              - s3:PutObject
+            - Action:
+                - s3:PutObject
               Effect: Allow
               Resource: "arn:aws:s3:::codepipeline*"
             - Action:
@@ -67,7 +67,7 @@ Resources:
             Service: cloudformation.amazonaws.com
           Effect: Allow
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
       Policies:
         - PolicyName: "CloudFormation"
           PolicyDocument: 

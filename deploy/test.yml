@@ -2,18 +2,14 @@ AWSTemplateFormatVersion: '2010-09-09'
 Resources:
   TestFunction:
     Properties:
-      CodeUri: s3://offcourse-bootstrap/4c480801d0425dc6f7a475eccad6459e
+      CodeUri: s3://offcourse-bootstrap/becef2b38243dafff16d563d309e2926
       Environment:
         Variables:
-          S3_BUCKET:
-            Ref: WebsiteBucket
+          RawDataBucket:
+            Fn::ImportValue: offcourse-RawDataBucket-dev
       Handler: index.handler
+      MemorySize: 1024
       Runtime: nodejs4.3
+      Timeout: 30
     Type: AWS::Serverless::Function
-  WebsiteBucket:
-    Properties:
-      WebsiteConfiguration:
-        ErrorDocument: index.html
-        IndexDocument: index.html
-    Type: AWS::S3::Bucket
 Transform: AWS::Serverless-2016-10-31

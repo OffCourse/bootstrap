@@ -35,7 +35,7 @@
 
 (defn read-file [path]
   (let [c (async/chan)]
-    (.readFile fs "extracted/buildspec.yml" #(async/put! c %2))
+    (.readFile fs "/tmp/extracted/buildspec.yml" #(async/put! c %2))
     c))
 
 (defmethod perform [:put :file-path] [{:keys [bucket]} [_ payload :as action]]

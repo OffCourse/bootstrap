@@ -1,6 +1,6 @@
 {
     "CodePipeline.job": {
-        "id": "d6e9050e-1955-4d3a-b59b-306a9a20d2aa",
+        "id": "10b7b9f7-2470-4ddf-8c32-ff3e89a06bca",
         "accountId": "774182433398",
         "data": {
             "actionConfiguration": {
@@ -13,7 +13,7 @@
                     "location": {
                         "s3Location": {
                             "bucketName": "codepipeline-us-east-1-814057763522",
-                            "objectKey": "test-lambda/MyApp/zvHIKBT.zip"
+                            "objectKey": "test-lambda/MyApp/4QAG6fP.zip"
                         },
                         "type": "S3"
                     },
@@ -23,9 +23,9 @@
             ],
             "outputArtifacts": [],
             "artifactCredentials": {
-                "secretAccessKey": "X9RLWbgwU6C88Pip4aQr+oe6vBrlkUZyZ6Xp7m7l",
-                "sessionToken": "AgoGb3JpZ2luEDUaCXVzLWVhc3QtMSKAAmOrenQdBNf7oCfDzE2Wd4nHQ8S1pXiPpRy3VEaXjp7ua410GaO2OFv4j5cORz75eFeLkMO7PIsXTzm1Srcqc939q0FdotaG3s873MvHpPSQeOq+6Dp3KvGP8Dci+w1qdZzs80h6NCsb0AVHvb0gl8krZWFcUvZP4sKEq8mjrmZ4qyiWLR8V9i9k22yzbMIO4RCoT72vrAlc6dkVpUccareV9wvEebdEB7umpZTq6LFTUtqEV7w1A5U3hZo1FvemVakQT4yaqPdfutJJ6VgXg5X1uiUj5nxFhkxXD5xqkVsR8BjnSLfFo2dl47LMWckgbk0wPcz8G4auisRs1eJR6WUq3wQIahAAGgw3NzQxODI0MzMzOTgiDAZtzmvyfXjgood2myq8BCPCIFPXgnw4fr8EFIqRxndOhGgvZqkyuCs0S088ZlBLbzbWxoDQWH1FYxVAaW3J0x/XSf8dzwMN6+opioA4K50rYL99/wXsH9brKYJKr1wA7vUqwTuVznIphB9vJiSLCif7I37vuxxpMAfalwKuZHKLqABGM4KIdR3f+G4lRol3mHm+H+bqnWpFptHxwYtfNvGWBl2vRvdy7N4U8eA3N7Kao8XbQBFzvrbYxXol6bWU998XejKIdnDIes2H7JwVSBQWc6cwpOXkFUjRl903vVZbGJPtMzULhZoTcjSWAWg+hvPBgORRN7NJRjYAgzYELXbMHVORAtrX8exDBZywVf2Dhj0YjZ3hec3Fymr+z9cuLuz8iO8pMwPavsRcte5K8jWtOmQA5F8AsiRrMIas0xPSoVhymBENC4m5QVef13iOw9pyGRGQ3dwqfnHu3xThcqEA9ExFbtoqiuD2nVzepXv42L2SB5ZsVwCT9XGqJ3CjDQhmMlYONC06g0vH2w+HPPuFt5ddkbWkCAkanSrDn6v0me5Pz1MXV75M9cqQfdp4WnTPPBgUccslSJ5eXxSuxQWnSBRqINRIolBlH6JIcft3XvKXUKqyRwyM9NZp8pNfhiyzg5ps0VWe1aI3r+dD6vVa6S5Ba8NOAjz2HGOLdeq8ZfH0PP7rrvqUQB1Mdn4j6bOj4btwbea26HaHI79cGjN8zGck4+rlkORG3bsAwZzFV4YQJ0zZfPF4QD+mtpMIqb2/1K+vuEjBvlVOMOeh58IF",
-                "accessKeyId": "ASIAIZ7SIJVXEGQSJGDA"
+                "secretAccessKey": "y/f+RzJS6E2a1d5hHA5dGZq4Xnoefd0LrdMEaYXS",
+                "sessionToken": "AgoGb3JpZ2luEEQaCXVzLWVhc3QtMSKAAj2HPq7UnUdV04sn/2AiNaxfAPOkmuMvE5G8fRoytIQ7AtgrcbRFdy4jc48Yq0p0e9l0z1Th8z+z+9xgGLhWHJEtKkuIF7XYUPe7xtVctZKVwdLLeU/mIlAXnVzwq9OOsdfo4WxD1B413OQoSP46WnHwDSeczRZD8CL4Cv0nbVGvIpGR/6dKMk3Jz9YU8reDKrWLigQeby+gimE2b8fY3ngeOCsCxGN6qf0k0rk9pl4hZa2nTKhgO1CCalU3pMpISpWP8EHmJbHEFEbPGyhC55NcBwQjDc2Sj7VHi/2ZXGxKY6P5z17N2AJTvE1ESPOjgenZW+TEgWXTEuZbSkf6WxMq4AQIeRAAGgw3NzQxODI0MzMzOTgiDOLcJcTMYJq6kpRAdyq9BHre5E3ov1xkXDr/RseSCECFxwYyw+lr8iU5CARvEOwtegb0fJ5Npb0pXDLnQfE8y+6xOkXJvRHIMfXwmerD2RZblRn1tzWot7GXxclSAAYwsQuFwS4ljNSjG0s1OlyLxEKuXquNyAhcX3DwfguHRWS4Y0Zn2mqkvw7wsLL9O9cJw3cVTvzPee8X8t+pNREZ2Ud9Yqwtwx0c+LCR7Z2axSXCuSRbyZuwI4rnxZ8x2kDz9TuJx5A+xo6IIIj/GpWIjB7jtpzgfh283iyzlT8l3FwrgARLoE2aX2XpOuG9h87zMLauSXoruoe9ZhNy4iZ88t+MAtdt5LvWeic5IEMe49J82JX17azeyAlottA34cB2Zl1GDliwokB1JywVMuCXzrRPrrLjxqJ0+hAI1OTDTzUcmQT0jZ7MZ0ibOCsgT2/w3kiJAQz96pfsaQruqnvG9PcagXdAKK4YSSQtKg9Ey9E3YyS7N1PK8bcjUsra6mVa1VWLEE0mBMDNhuy30x2cdDeiHq5PlUFm8H2dyTh5Qcuuy/c6Yhrtg1qusNs/jh9uo+Hp3OAmv/HYOrMapJ76oifW62+8lnUHUQ/1hVr+fpmwxqf0GiAiNUzekKIJfl+YFQYABN6jjSBuiRla5rWRnTTkrlBdIFkDBctRCkOY3G8/4NRmPK78tQWmeQpggj1qFr6tO1qje2KoyyISK6uqRklzqlAUGD8TR5Wq0kX3kDWzH0nXyaQFwZTgFSt7itgkoFBsiNFmlCIpA102PDCh1OrCBQ==",
+                "accessKeyId": "ASIAIPAO4YR2YG42TXVA"
             }
         }
     }
