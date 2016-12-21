@@ -8,7 +8,7 @@
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (def adapters {:code-pipeline {}
-               :bucket {:bucket-names {}}})
+               :bucket {:bucket-names {:files "test-909"}}})
 
 (defn ^:export handler [& args]
   (go
@@ -17,10 +17,10 @@
           query                       (cv/to-query event)
           {:keys [found error]}       (async/<! (qa/fetch service query))
           artifacts                   (when found (async/<! (ac/perform service [:decode found])))
-          res1      {} #_(ac/perform service [:put artifacts])
+          res1                        (when artifacts (async/<! (ac/perform service [:put artifacts])))
           res2      {} #_(async/<! (ac/perform service [:put payload]))]
       (when-not found (log/log "RESTART PIPELINE"))
-      (service/done service artifacts))))
+      (service/done service res1))))
 
 (defn -main [] identity)
 (set! *main-cli-fn* -main)
